@@ -15,9 +15,10 @@ module RailsAdmin
         register_instance_option :controller do
           proc do
             @history = @auditing_adapter && @auditing_adapter.latest || []
-            
-            register_instance_option :link_icon do
-              'icon-home'
+            if @action.statistics?
+              register_instance_option :link_icon do
+                 'icon-home'
+              end
             end
             render @action.template_name, status: @status_code || :ok
           end
@@ -32,7 +33,7 @@ module RailsAdmin
         end
 
         register_instance_option :statistics? do
-          false
+          true
         end
       end
     end
