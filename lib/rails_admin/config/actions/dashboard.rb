@@ -16,9 +16,7 @@ module RailsAdmin
           proc do
             @history = @auditing_adapter && @auditing_adapter.latest || []
             if @action.statistics?
-              register_instance_option :link_icon do
-                 'icon-home'
-              end
+           
             end
             render @action.template_name, status: @status_code || :ok
           end
